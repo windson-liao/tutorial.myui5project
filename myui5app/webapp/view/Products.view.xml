@@ -1,0 +1,60 @@
+
+<mvc:View
+    controllerName="myui5app.controller.Products"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartList="sap.ui.comp.smartlist"
+    xmlns:smartTable="sap.ui.comp.smarttable">
+    <Page
+        id="Products"
+        title="Available Products"
+    >
+        <smartFilterBar:SmartFilterBar
+            id="smartFilterBar"
+            persistencyKey="UniqueAndStablePersistencyKey"
+            entitySet="Products"
+            considerSelectionVariants="true"
+        />
+        <smartList:SmartList
+            id="smartProductList"
+            smartFilter="smartFilterBar"
+            entitySet="Products"
+            expandFields="Category"
+            header="Products List"
+            showRowCount="true"
+            showFullScreenButton="true"
+            enableAutoBinding="true"
+        >
+            <smartList:listItemTemplate>
+                <StandardListItem
+                    id="listTemplate"
+                    type="Navigation"
+                    press=".handleListItemPress"
+                    title="{ProductName}"
+                    info="{= ${UnitPrice} + ' €' }"
+                    description="{Category/CategoryName}"
+                />
+            </smartList:listItemTemplate>
+        </smartList:SmartList>
+    <!--    
+    <content>
+      <List id="_IDGenList" items="{/Products}">
+        
+        <StandardListItem id="_IDGenStandardListItem" 
+        type="Active" 
+        title="{ProductName}" />
+        
+        
+        <StandardListItem 
+        id="_IDGenStandardListItem" 
+        type="Navigation" 
+        press=".handleListItemPress" 
+        title="{ProductName}" />
+      </List>
+    </content>
+    -->
+    
+    </Page>
+</mvc:View>
